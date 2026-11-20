@@ -3,6 +3,7 @@ package test.com;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import test.com.Screens.ScreenGame;
 
 public class MyGdxGame extends Game {
 

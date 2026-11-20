@@ -1,7 +1,8 @@
-package test.com;
+package test.com.characters;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import test.com.MyGdxGame;
 
 public class Bird {
 
@@ -32,12 +33,12 @@ public class Bird {
         };
     }
 
-    void onClick() {
+    public void onClick() {
         jump = true;
         jumpHeight = maxHeightOfJump + y;
     }
 
-    void fly() {
+    public void fly() {
         if (y >= jumpHeight) {
             jump = false;
         }
@@ -47,16 +48,23 @@ public class Bird {
         } else {
             y -= speed;
         }
-        x += 3;
+
+        if (y < -height)
+            y = -height;
+
     }
 
-    void draw(Batch batch) {
+    public void draw(Batch batch) {
         int frameMultiplier = 10;
         batch.draw(framesArray[frameCounter / frameMultiplier], x, y, width, height);
         if (frameCounter++ == framesArray.length * frameMultiplier - 1) frameCounter = 0;
     }
 
-    void dispose() {
+    public boolean isInField() {
+        return y > 0 && y + height < MyGdxGame.SCR_HEIGHT;
+    }
+
+    public void dispose() {
         for (Texture texture : framesArray) {
             texture.dispose();
         }
